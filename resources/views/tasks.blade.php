@@ -46,7 +46,7 @@
                 
             
 
-            @foreach ($tasks as $task)
+
                 
             {{-- List item --}}
             <div class="px-6 py-2 bg-[#FFFFFE] text-[#716040] rounded-[5px] md:flex md:justify-between md:items-center shadow">
@@ -54,16 +54,16 @@
                     
                     <form action="" method="post" class="flex items-center" > @csrf
                         @method('patch')
-                        <input type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}
+                        <input type="checkbox" onChange=""  
                         class="w-6 h-6 rounded focus:ring-3"
                         >
                     </form>
               
                 
                     <div class="mx-6 w-full">
-                        <a href="{{ route('tasks.show', $task) }}">
-                            <h1 class="w-full text-lg">{{ $task->title }}</h1>
-                            <p class="text-sm">{{ $task->created_at }}</p>
+                        <a href="">
+                            <h1 class="w-full text-lg"> $task->title </h1>
+                            <p class="text-sm"> $task->created_at </p>
                         </a>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 {{-- Actions --}}
                 <div class="flex justify-end gap-16">
                     <div>
-                        <a class="flex items-center gap-[5px]" href="{{ route('tasks.edit', $task) }}">
+                        <a class="flex items-center gap-[5px]" href="/tasks/edit">
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -106,7 +106,7 @@
             
             </div>
             {{-- END List item --}}
-            @endforeach
+    
 
 
         </div>

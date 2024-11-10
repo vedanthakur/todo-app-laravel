@@ -44,7 +44,7 @@
             @endauth
 
             @guest
-                <a href="/login">
+                <a href="/tasks">
                     Get Started
                 </a>
             @endguest

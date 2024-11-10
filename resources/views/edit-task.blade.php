@@ -36,7 +36,7 @@
                 <div>
                     <label for="title" class="text-[#716040]">Title: *</label>
                     <div>
-                        <input type="text" id="title" name="title" placeholder="Enter Title" value="{{ $task->title }}" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]">
+                        <input type="text" id="title" name="title" placeholder="Enter Title" value="" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]">
                     </div>
                     @error('title')
                         <p class="text-red-500">{{ $message }}</p>
@@ -46,7 +46,7 @@
                 <div>
                     <label for="description" class="text-[#716040]">Description: *</label>
                     <div>
-                        <textarea name="description" id="description" cols="30" rows="5" placeholder="Enter description" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]">{{ $task->description }}</textarea>
+                        <textarea name="description" id="description" cols="30" rows="5" placeholder="Enter description" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]"></textarea>
                         @error('description')
                             <p class="text-red-500">{{ $message }}</p>
                         @enderror

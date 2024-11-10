@@ -10,3 +10,4 @@ Route::view('/login', 'login');
 Route::view('/signup', 'signup');
 Route::view('/tasks', 'tasks');
 Route::view('/tasks/create', 'add-task');
+Route::view('/tasks/edit', 'edit-task');
