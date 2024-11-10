@@ -11,8 +11,19 @@
     <nav class="flex justify-between py-5 px-8 md:px-20 lg:px-[120px] text-[#716040] text-xl">
         <div><a href="/">Todo App</a></div>
         <ul class="flex gap-[50px]">
-            <li><a href="/signup">Sign up</a></li>
-            <li><a href="/login">Log in</a></li>
+            @auth
+                <li><a href="">View Tasks</a></li> 
+                <li>
+                    <form action="" method="post"> @csrf
+                        <button type="submit">Log out</button>
+                    </form>
+                </li>   
+            @endauth
+
+            @guest
+                <li><a href="/signup">Sign up</a></li>
+                <li><a href="/login">Log in</a></li>
+            @endguest
         </ul>
     </nav>
 
@@ -26,9 +37,17 @@
         </div>
             
         <button class="mt-11 px-4 py-[5px] bg-[#8C7851] text-2xl text-[#FFFFFE] rounded-[10px]">
-            <a href="/login">
-                Get Started
-            </a>
+            @auth
+                <a href="/tasks/create">
+                    Add Tasks
+                </a>
+            @endauth
+
+            @guest
+                <a href="/login">
+                    Get Started
+                </a>
+            @endguest
         </button>
         
         <div class="w-full">

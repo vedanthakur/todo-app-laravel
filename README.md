@@ -47,4 +47,5 @@ Note: Vite and Tailwind CSS are auto configured with every Laravel projects. No 
     - Log in page: ` login.blade.php `
     - Tasks page: ` tasks.blade.php `
     - Add tasks page: ` add-task.blade.php `
+    - Edit Task page: ` edit-task.blade.php `
 

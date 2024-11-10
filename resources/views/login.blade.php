@@ -32,8 +32,8 @@
                     <input type="password" name="password" id="password" placeholder="Enter password" class="px-3 py-[6px] w-full text-xl rounded-[7px]">
                 </div>
                 <div class="mb-[20px]">
-                    <input type="checkbox" name="rememberMe" id="rememberMe">
-                    <label for="rememberMe">Keep me logged in</label>
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Keep me logged in</label>
                 </div>
                 <button class="px-[18px] py-[5px] bg-[#8C7851] text-[#FFFFFE] text-xl rounded-[10px]">Log in</button>
             </form>
