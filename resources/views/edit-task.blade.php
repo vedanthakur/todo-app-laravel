@@ -31,12 +31,12 @@
 
         {{-- Add Task --}}
         <div class="mt-2 px-[30px] pt-[30px] pb-[70px] w-full bg-[#EADDCF] text-[#716040] rounded-tl-[10px] rounded-tr-[100px] rounded-bl-[100px] rounded-br-[10px] flex flex-col gap-[30px]">
-            <form action="" method="post" class="flex flex-col gap-[25px]"> @csrf
+            <form action="{{ route('tasks.update', $task) }}" method="post" class="flex flex-col gap-[25px]"> @csrf
                 @method('put')
                 <div>
                     <label for="title" class="text-[#716040]">Title: *</label>
                     <div>
-                        <input type="text" id="title" name="title" placeholder="Enter Title" value="" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]">
+                        <input type="text" id="title" name="title" placeholder="Enter Title" value="{{ $task->title }}" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]">
                     </div>
                     @error('title')
                         <p class="text-red-500">{{ $message }}</p>
@@ -44,9 +44,9 @@
                 </div>
 
                 <div>
-                    <label for="description" class="text-[#716040]">Description: *</label>
+                    <label for="description" class="text-[#716040]">Description: </label>
                     <div>
-                        <textarea name="description" id="description" cols="30" rows="5" placeholder="Enter description" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="5" placeholder="Enter description" class="px-3 py-[6px] w-full text-xl rounded-[7px] bg-[#FFFFFE]">{{ $task->description }}</textarea>
                         @error('description')
                             <p class="text-red-500">{{ $message }}</p>
                         @enderror
