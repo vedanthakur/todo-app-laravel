@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\Globalware;
+use App\Http\Middleware\isAuthUser;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // $middleware->append(Globalware::class);
+        
+        $middleware->alias([
+            'isAuth' => isAuthUser::class,
+            
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

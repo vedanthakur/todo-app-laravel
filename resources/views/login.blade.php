@@ -22,7 +22,7 @@
         
         <div class="mt-3 px-[30px] pt-[30px] pb-[90px] md:w-[526px] bg-[#EADDCF] text-[#716040] rounded-tl-[10px] rounded-tr-[100px] rounded-bl-[100px] rounded-br-[10px]">
             <h1 class="text-[32px]">Log in</h1>
-            <form action="" method="POST"> @csrf
+            <form action="{{ route('login') }}" method="POST"> @csrf
                 <label for="email" class="text-base">Email:</label>
                 <div class="mb-[20px]">
                     <input type="text" name="email" id="email" placeholder="Enter email" class="px-3 py-[6px] w-full text-xl rounded-[7px]">

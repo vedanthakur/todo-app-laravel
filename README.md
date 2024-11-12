@@ -40,6 +40,9 @@ Note: Vite and Tailwind CSS are auto configured with every Laravel projects. No 
 
 ## Starter files
 
+Starter files are in starter branch
+` https://github.com/vedanthakur/todo-app-laravel/tree/starter `
+
 - Find the webpages as blade files in ` resources >> views `
     
     - Homepage page: ` welcome.blade.php `

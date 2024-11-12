@@ -22,7 +22,7 @@
         
         <div class="mt-3 px-[30px] pt-[30px] pb-[90px] md:w-[526px] bg-[#EADDCF] text-[#716040] rounded-tl-[10px] rounded-tr-[100px] rounded-bl-[100px] rounded-br-[10px]">
             <h1 class="text-[32px]">Sign up</h1>
-            <form action="" method="POST"> @csrf
+            <form action="{{ route('register') }}" method="POST"> @csrf
                 <label for="name" class="text-base">Name:</label>
                 <div class="mb-[20px]">
                     <input type="text" name="name" id="name" placeholder="Enter name" class="px-3 py-[6px] w-full text-xl rounded-[7px]">
@@ -35,7 +35,7 @@
                 <div class="mb-[20px]">
                     <input type="password" name="password" id="password" placeholder="Enter password" class="px-3 py-[6px] w-full text-xl rounded-[7px]">
                 </div>
-                <label for="password_confirmation" class="text-base">Password</label>
+                <label for="password_confirmation" class="text-base">Password Confirm</label>
                 <div class="mb-[20px]">
                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Enter password again" class="px-3 py-[6px] w-full text-xl rounded-[7px]">
                 </div>

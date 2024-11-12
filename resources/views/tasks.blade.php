@@ -14,7 +14,7 @@
         <div><a href="/">Todo App</a></div>
         <ul class="flex gap-[50px]">
             <li>
-                <form action="" method="post"> @csrf
+                <form action="{{ route('logout') }}" method="post"> @csrf
                     <button type="submit">Log out</button>
                 </form>
             </li>
@@ -24,7 +24,7 @@
 
     {{-- Main --}}
     <div class="pt-6 pb-[100px] px-8 md:px-20 lg:px-[120px] bg-[#FFFFFE] flex flex-col items-center min-h-screen">
-        <p class="w-full text-right text-[18px] text-[#716040]">Welcome back, Auth::user()->name</p>
+        <p class="w-full text-right text-[18px] text-[#716040]">Welcome back, {{-- Auth::user()->name --}}</p>
 
         <h1 class="mt-10 text-2xl text-[#020826] font-bold ">Todo List</h1>
 
@@ -53,9 +53,9 @@
             <div class="px-6 py-2 bg-[#FFFFFE] text-[#716040] rounded-[5px] md:flex md:justify-between md:items-center shadow">
                 <div class="flex items-center">
                     
-                    <form action="" method="post" class="flex items-center" > @csrf
+                    <form action="{{ route('tasks.update.completed', $task) }}" method="post" class="flex items-center" > @csrf
                         @method('patch')
-                        <input type="checkbox" onChange=""  
+                        <input type="checkbox" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}
                         class="w-6 h-6 rounded focus:ring-3"
                         >
                     </form>
@@ -63,7 +63,13 @@
                     
                     <div class="mx-6 w-full">
                         <a href="{{ route('tasks.show', $task) }}">
-                            <h1 class="w-full text-lg"> {{ $task->title }} </h1>
+                            <h1 class="w-full text-lg"> 
+                                @if ($task->completed)
+                                    <strike>{{ $task->title }}</strike>
+                                @else
+                                   {{  $task->title }}
+                                @endif    
+                            </h1>
                             <p class="text-sm"> {{ $task->created_at }} </p>
                         </a>
                     </div>
@@ -115,7 +121,7 @@
         {{-- END Todo List --}}
 
         <div class="w-full mt-7">
-            {{-- $tasks->links() --}}
+            {{ $tasks->links() }}
         </div>
 
     </div>

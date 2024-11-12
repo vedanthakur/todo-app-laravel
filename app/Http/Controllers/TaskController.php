@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -12,7 +14,15 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        if (Gate::allows('admin-access')) {
+            $tasks = Task::latest()->paginate(10);
+            return view('tasks', compact('tasks'));
+        }
+        // $tasks = Task::latest()->paginate(5);
+
+        $userId = Auth::user()->id;
+        $tasks = Task::where('user_id', $userId)->latest()->paginate(10);
+
         return view('tasks', compact('tasks'));
     }
 
@@ -34,7 +44,10 @@ class TaskController extends Controller
             'description' => 'string|nullable'
         ]);
 
-        Task::create($data);
+        // Task::create($data);
+        $task = new Task($data);
+        $task->user_id = Auth::id();
+        $task->save();
 
         return redirect()->route('tasks.index');
     }
@@ -44,6 +57,10 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        if (Gate::allows('admin-access')) {
+            return view('task', compact('task'));
+        }
+        Gate::authorize('access-task', $task);
         return view('task', compact('task'));
     }
 
@@ -52,6 +69,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
+        if (Gate::allows('admin-access')) {
+            return view('edit-task', compact('task'));
+        }
+        Gate::authorize('access-task', $task);
         return view('edit-task', compact('task'));
     }
 
@@ -64,10 +85,31 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'string|nullable'
         ]);
-
+       
+        if (Gate::allows('admin-access')) {
+            $task->update($data);
+            return redirect()->route('tasks.index');
+        }
+        Gate::authorize('access-task', $task);
         $task->update($data);
 
         return redirect()->route('tasks.index');
+    }
+
+    public function updateCompleted(Request $request, Task $task)
+    {
+        if (Gate::allows('admin-access')) {
+            $task->update([
+                'completed' => !$task->completed
+            ]);
+            return redirect()->back();
+        }
+
+        Gate::authorize('access-task', $task);
+        $task->update([
+            'completed' => !$task->completed
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -75,6 +117,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        if (Gate::allows('admin-access')) {
+            $task->delete();
+            return redirect()->route('tasks.index');
+        }
+        Gate::authorize('access-task', $task);
         $task->delete();
         return redirect()->route('tasks.index');
     }

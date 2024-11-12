@@ -14,7 +14,7 @@
             @auth
                 <li><a href="">View Tasks</a></li> 
                 <li>
-                    <form action="" method="post"> @csrf
+                    <form action="{{ route('logout') }}" method="post"> @csrf
                         <button type="submit">Log out</button>
                     </form>
                 </li>   
